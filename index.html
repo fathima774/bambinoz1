@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bambinoz - The Perfect Baby Shop</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Design System Base */
+        :root {
+            /* Custom Bambinoz Colors */
+            --color-primary: #FFB6C1;
+            --color-secondary: #87CEEB;
+            --color-accent: #FFE4B5;
+            --color-text: #2C3E50;
+            --color-background: #FFFFFF;
+            --color-light-gray: #F8F9FA;
+            --color-shadow: rgba(0, 0, 0, 0.1);
+            
+            /* Typography */
+            --font-family-primary: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+            --font-size-xs: 12px;
+            --font-size-sm: 14px;
+            --font-size-base: 16px;
+            --font-size-lg: 18px;
+            --font-size-xl: 24px;
+            --font-size-2xl: 32px;
+            --font-size-3xl: 48px;
+            --font-weight-light: 300;
+            --font-weight-normal: 400;
+            --font-weight-medium: 500;
+            --font-weight-semibold: 600;
+            --font-weight-bold: 700;
+            
+            /* Spacing */
+            --space-xs: 8px;
+            --space-sm: 16px;
+            --space-md: 24px;
+            --space-lg: 32px;
+            --space-xl: 48px;
+            --space-2xl: 64px;
+            --space-3xl: 96px;
+            
+            /* Border Radius */
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-xl: 24px;
+            --radius-full: 50px;
+            
+            /* Shadows */
+            --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.1);
+            --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.15);
+            --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.2);
+            
+            /* Animation */
+            --transition-base: all 0.3s ease;
+        }
+        
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+            font-size: var(--font-size-base);
+        }
+        
+        body {
+            font-family: var(--font-family-primary);
+            line-height: 1.6;
+            color: var(--color-text);
+            background-color: var(--color-background);
+            overflow-x: hidden;
+        }
+        
+        /* Header & Navigation */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 182, 193, 0.2);
+            z-index: 1000;
+            padding: var(--space-sm) 0;
+            transition: var(--transition-base);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 var(--space-sm);
+        }
+        
+        .logo {
+            font-size: var(--font-size-xl);
+            font-weight: var(--font-weight-bold);
+            color: var(--color-primary);
+            text-decoration: none;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            gap: var(--space-lg);
+        }
+        
+        .nav-link {
+            text-decoration: none;
+            color: var(--color-text);
+            font-weight: var(--font-weight-medium);
+            transition: var(--transition-base);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--color-primary);
+        }
+        
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--color-primary);
+            transition: var(--transition-base);
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .mobile-menu-toggle {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            padding: var(--space-xs);
+        }
+        
+        .mobile-menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: var(--color-text);
+            margin: 3px 0;
+            transition: var(--transition-base);
+            border-radius: 2px;
+        }
+        
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-secondary) 50%, var(--color-accent) 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="20" cy="20" r="2" fill="%23ffffff20"/><circle cx="80" cy="40" r="3" fill="%23ffffff15"/><circle cx="40" cy="70" r="2" fill="%23ffffff25"/><circle cx="70" cy="80" r="1" fill="%23ffffff30"/><circle cx="30" cy="50" r="1.5" fill="%23ffffff20"/></svg>') repeat;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            0% { transform: translateY(0) rotate(0deg); }
+            100% { transform: translateY(-100px) rotate(360deg); }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+            padding: 0 var(--space-sm);
+        }
+        
+        .hero-logo {
+            font-size: clamp(3rem, 8vw, 6rem);
+            font-weight: var(--font-weight-bold);
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: var(--space-sm);
+            letter-spacing: -2px;
+        }
+        .logo-section {
+            gap: var(--space-8);
+          }
+
+          .logo {
+            width: 40px;
+            height: 40px;
+          }
+
+
+        
+        .hero-tagline {
+            font-size: var(--font-size-xl);
+            color: white;
+            font-weight: var(--font-weight-medium);
+            margin-bottom: var(--space-sm);
+            text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
+        }
+        
+        .hero-subtitle {
+            font-size: var(--font-size-lg);
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: var(--font-weight-light);
+            margin-bottom: var(--space-xl);
+        }
+        
+        .scroll-indicator {
+            position: absolute;
+            bottom: var(--space-lg);
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+        
+        .scroll-arrow {
+            width: 24px;
+            height: 24px;
+            border: 2px solid white;
+            border-top: none;
+            border-left: none;
+            transform: rotate(45deg);
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
+        }
+        
+        /* Section Base Styles */
+        .section {
+            padding: var(--space-3xl) 0;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 var(--space-sm);
+        }
+        
+        .section-title {
+            font-size: var(--font-size-2xl);
+            font-weight: var(--font-weight-bold);
+            text-align: center;
+            color: var(--color-text);
+            margin-bottom: var(--space-2xl);
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, var(--color-primary), var(--color-secondary));
+            border-radius: 2px;
+        }
+        
+        /* Services Section */
+        .services {
+            background: var(--color-light-gray);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: var(--space-lg);
+            margin-top: var(--space-xl);
+        }
+        
+        .service-card {
+            background: white;
+            padding: var(--space-lg);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-base);
+            text-align: center;
+            border: 2px solid transparent;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: var(--color-primary);
+        }
+        
+        .service-icon {
+            font-size: 48px;
+            margin-bottom: var(--space-sm);
+            display: block;
+        }
+        
+        .service-title {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: var(--space-sm);
+        }
+        
+        .service-description {
+            color: var(--color-text);
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        /* About Section */
+        .about {
+            background: white;
+        }
+        
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: center;
+        }
+        
+        .about-text {
+            font-size: var(--font-size-lg);
+            line-height: 1.8;
+            color: var(--color-text);
+            margin-bottom: var(--space-lg);
+        }
+        
+        .established-year {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+            padding: var(--space-sm) var(--space-md);
+            border-radius: var(--radius-full);
+            font-weight: var(--font-weight-bold);
+            font-size: var(--font-size-lg);
+            margin-bottom: var(--space-lg);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .features-list {
+            list-style: none;
+        }
+        
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: var(--space-sm);
+            padding: var(--space-sm);
+            background: rgba(255, 182, 193, 0.1);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-base);
+        }
+        
+        .feature-item:hover {
+            background: rgba(255, 182, 193, 0.2);
+            transform: translateX(8px);
+        }
+        
+        .feature-item::before {
+            content: '✓';
+            color: var(--color-primary);
+            font-weight: var(--font-weight-bold);
+            margin-right: var(--space-sm);
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: white;
+            border-radius: 50%;
+            font-size: 12px;
+        }
+        
+        .about-image {
+            position: relative;
+            border-radius: var(--radius-xl);
+            overflow: hidden;
+            box-shadow: var(--shadow-lg);
+        }
+        
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            transition: var(--transition-base);
+        }
+        
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+  /* Products Section */
+.products {
+  background: var(--color-light-gray);
+}
+
+.products .container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-sm);
+}
+
+.section-header {
+  text-align: center;
+  margin-bottom: var(--space-2xl);
+}
+
+.section-header h2 {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text);
+  margin-bottom: var(--space-sm);
+}
+
+.section-header p {
+  color: var(--color-text);
+  opacity: 0.8;
+  font-size: var(--font-size-lg);
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--space-lg);
+  margin-top: var(--space-xl);
+}
+
+.product-card {
+  background: white;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transition: var(--transition-base);
+}
+
+.product-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-md);
+}
+
+.product-image {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  background: var(--color-light-gray);
+}
+
+.product-content {
+  padding: var(--space-md);
+}
+
+.product-card h3 {
+  margin-bottom: var(--space-xs);
+  color: var(--color-text);
+  font-weight: var(--font-weight-semibold);
+  font-size: var(--font-size-lg);
+}
+
+.product-card p {
+  color: var(--color-text);
+  opacity: 0.8;
+  margin: 0;
+  font-size: var(--font-size-base);
+  line-height: 1.6;
+}
+
+.visit-store-note {
+  text-align: center;
+  margin-top: var(--space-2xl);
+  padding: var(--space-lg);
+  background: white;
+  border-radius: var(--radius-lg);
+  border-left: 4px solid var(--color-primary);
+  box-shadow: var(--shadow-sm);
+}
+
+.visit-store-note h3 {
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text);
+  margin-bottom: var(--space-xs);
+}
+
+.visit-store-note p {
+  font-size: var(--font-size-base);
+  color: var(--color-text);
+  opacity: 0.8;
+}
+
+
+
+
+        /* Contact Section */
+        .contact {
+            background: var(--color-light-gray);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: var(--space-2xl);
+            align-items: start;
+        }
+        
+        .contact-info {
+            background: white;
+            padding: var(--space-xl);
+            border-radius: var(--radius-lg);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            margin-bottom: var(--space-lg);
+            padding: var(--space-sm);
+            border-radius: var(--radius-sm);
+            transition: var(--transition-base);
+        }
+        
+        .contact-item:hover {
+            background: rgba(255, 182, 193, 0.1);
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            margin-right: var(--space-sm);
+            margin-top: 2px;
+        }
+        
+        .contact-details h3 {
+            font-size: var(--font-size-lg);
+            font-weight: var(--font-weight-semibold);
+            color: var(--color-text);
+            margin-bottom: 4px;
+        }
+        
+        .contact-details p {
+            color: var(--color-text);
+            opacity: 0.8;
+            margin: 0;
+        }
+        
+        .contact-details a {
+            color: var(--color-primary);
+            text-decoration: none;
+            font-weight: var(--font-weight-medium);
+            transition: var(--transition-base);
+        }
+        
+        .contact-details a:hover {
+            color: var(--color-secondary);
+            text-decoration: underline;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            gap: var(--space-sm);
+            margin-top: var(--space-lg);
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: var(--space-sm) var(--space-md);
+            border: none;
+            border-radius: var(--radius-full);
+            font-family: var(--font-family-primary);
+            font-size: var(--font-size-base);
+            font-weight: var(--font-weight-medium);
+            text-decoration: none;
+            cursor: pointer;
+            transition: var(--transition-base);
+            box-shadow: var(--shadow-sm);
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+        
+        .btn-secondary {
+            background: white;
+            color: var(--color-text);
+            border: 2px solid var(--color-primary);
+        }
+        
+        .btn-secondary:hover {
+            background: var(--color-primary);
+            color: white;
+        }
+        
+        .map-container {
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            height: 400px;
+        }
+        
+        .map-container iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--color-text);
+            color: white;
+            text-align: center;
+            padding: var(--space-xl) 0;
+        }
+        
+        .footer p {
+            margin: 0;
+            opacity: 0.8;
+        }
+        .logo-section img{
+            width: 200px;
+           height: 100px;
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: white;
+                flex-direction: column;
+                padding: var(--space-md);
+                box-shadow: var(--shadow-md);
+            }
+            
+            .nav-menu.active {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle {
+                display: flex;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 5px);
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .mobile-menu-toggle.active span:nth-child(3) {
+                transform: rotate(-45deg) translate(7px, -6px);
+            }
+            
+            .hero-logo {
+                font-size: 3rem;
+            }
+            
+            .hero-tagline {
+                font-size: var(--font-size-lg);
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+                gap: var(--space-xl);
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+            
+            .section {
+                padding: var(--space-2xl) 0;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .service-card {
+                padding: var(--space-md);
+            }
+            
+            .contact-info {
+                padding: var(--space-md);
+            }
+        }
+        
+        /* Scroll animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <nav class="nav-container">
+
+<div class="logo-section">
+                <img src="WhatsApp Image 2025-10-24 at 12.18.22_9b016937.jpg" alt="Bambinoz Logo" class="logo">
+                 </div>
+                <!-- <div class="brand-info">
+                    <h1>BAMBINOZ</h1>
+                    <p class="tagline">The Perfect Baby Shop</p>
+                </div> -->
+           
+
+            <!-- <a href="#home" class="logo">BAMBINOZ</a> -->
+            <ul class="nav-menu" id="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#services" class="nav-link">Services</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+            <div class="mobile-menu-toggle" id="mobile-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content fade-in">
+            <h1 class="hero-logo">BAMBINOZ</h1>
+            <p class="hero-tagline">The Perfect Baby Shop</p>
+            <p class="hero-subtitle">Largest Baby Shop in Trivandrum with 50+ Years of Trust</p>
+        </div>
+        <div class="scroll-indicator">
+            <div class="scroll-arrow"></div>
+        </div>
+    </section>
+
+
+    
+    <!-- Services Section -->
+    <section id="services" class="section services">
+        <div class="container">
+            <h2 class="section-title fade-in">Our Services</h2>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <span class="service-icon">👶</span>
+                    <h3 class="service-title">Baby Fashion &amp; Clothing</h3>
+                    <p class="service-description">Trendy and comfortable clothing for newborns, infants, and toddlers from top Indian brands</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🧴</span>
+                    <h3 class="service-title">Baby Care Products</h3>
+                    <p class="service-description">Comprehensive range of baby care essentials including diapers, wipes, lotions, and hygiene products</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🧸</span>
+                    <h3 class="service-title">Toys &amp; Educational Items</h3>
+                    <p class="service-description">Safe and engaging toys for all age groups that promote learning and development</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🍼</span>
+                    <h3 class="service-title">Feeding Essentials</h3>
+                    <p class="service-description">Bottles, breast pumps, sterilizers, and other feeding accessories from trusted brands</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🛏️</span>
+                    <h3 class="service-title">Nursery &amp; Furniture</h3>
+                    <p class="service-description">Cribs, strollers, car seats, and nursery furniture for your baby's comfort and safety</p>
+                </div>
+                <div class="service-card fade-in">
+                    <span class="service-icon">🤱</span>
+                    <h3 class="service-title">Maternity Products</h3>
+                    <p class="service-description">Essential products for expecting and new mothers to ensure comfort during pregnancy and postpartum</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="section about">
+        <div class="container">
+            <h2 class="section-title fade-in">About Bambinoz</h2>
+            <div class="about-content">
+                <div class="fade-in">
+                    <div class="established-year">Trusted Since 1973</div>
+                    <p class="about-text">
+                        We care our customers in our safe hands as a mother cares her newborn, even for their smallest needs with genuine products of leading brands in India which you can trust always. Bambinoz is the largest baby shop in Trivandrum city with huge trendy collections.
+                    </p>
+                    <ul class="features-list">
+                        <li class="feature-item">Over 50 years of trusted service since 1973</li>
+                        <li class="feature-item">Largest baby shop in Trivandrum</li>
+                        <li class="feature-item">Genuine products from leading brands</li>
+                        <li class="feature-item">Huge trendy collections</li>
+                        <li class="feature-item">Expert guidance for new parents</li>
+                        <li class="feature-item">One-stop destination for all baby needs</li>
+                    </ul>
+                </div>
+                <div class="about-image fade-in">
+                    <img src="WhatsApp Image 2025-07-29 at 08.04.08_869a06af.jpg" alt="Modern baby shop interior with pastel colors and organized displays" />
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+<!-- Products Section -->
+    <section class="section products" id="products">
+        <div class="container">
+            <div class="section-header">
+                <h2>Our Products</h2>
+                <p>From Cuddly Soft Toys to Trendy Baby Wear - We Have It All Under One Roof</p>
+            </div>
+            <div class="products-grid">
+                <div class="product-card">
+                    <img src="61ZlvUVFmDL._AC_UY1100_.jpg" alt="Baby Clothing" class="product-image">
+                    <div class="product-content">
+                        <h3>Baby Clothing</h3>
+                        <p>Adorable outfits for newborns, boys and girls. Trendy baby wear and fashion.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1761281417/pplx_project_search_images/07a9e530611de9710138f7d4f08bb81da30d8e55.png" alt="Toys & Play Items" class="product-image">
+                    <div class="product-content">
+                        <h3>Toys &amp; Play Items</h3>
+                        <p>Safe and fun toys for your little ones. Cuddly soft toys and playful essentials.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1761281417/pplx_project_search_images/6b5ee53ce66439b3079ced668862381abcc864bc.png" alt="Feeding Essentials" class="product-image">
+                    <div class="product-content">
+                        <h3>Feeding Essentials</h3>
+                        <p>Bottles, feeding gear, and accessories. Safe feeding gear for healthy nutrition.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1761281417/pplx_project_search_images/a1927e789499367798b32455a430241b5fbdc885.png" alt="Nursery Must-Haves" class="product-image">
+                    <div class="product-content">
+                        <h3>Nursery Must-Haves</h3>
+                        <p>Everything for a perfect nursery setup. Complete nursery solutions.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="newborn-baby-care (1).jpg" alt="Baby Care Products" class="product-image">
+                    <div class="product-content">
+                        <h3>Baby Care Products</h3>
+                        <p>Gentle care products for delicate skin. Trusted brands like Sebamed.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="14212648_1756142904654280_3134312604738299495_n_251991ba-3aef-41d6-a3f4-f44850a3781a_1204x630.webp" alt="Maternity Essentials" class="product-image">
+                    <div class="product-content">
+                        <h3>Maternity Essentials</h3>
+                        <p>Care products for expecting mothers. Mom and baby care.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="https://pplx-res.cloudinary.com/image/upload/v1761281417/pplx_project_search_images/6327dddbef6d94700b11aa443e8b77c630fbf140.png" alt="Accessories & Gear" class="product-image">
+                    <div class="product-content">
+                        <h3>Accessories &amp; Gear</h3>
+                        <p>Strollers, carriers, car seats and more. Essential baby gear.</p>
+                    </div>
+                </div>
+                <div class="product-card">
+                    <img src="wp8575689.jpg" alt="Kids Wear" class="product-image">
+                    <div class="product-content">
+                        <h3>Kids Wear</h3>
+                        <p>Trendy fashion for growing kids. Stylish clothing for children.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="visit-store-note">
+                <h3><i class="fas fa-store"></i> Visit our store to explore our complete collection</h3>
+                <p>Come and experience our wide range of baby products in person at our spacious showroom in Thiruvananthapuram.</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact">
+        <div class="container">
+            <h2 class="section-title fade-in">Visit Us</h2>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <div class="contact-item">
+                        <span class="contact-icon">📞</span>
+                        <div class="contact-details">
+                            <h3>Phone</h3>
+                            <p><a href="tel:+917736022002">+91 7736022002</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">✉️</span>
+                        <div class="contact-details">
+                            <h3>Email</h3>
+                            <p><a href="mailto:info@bambinoz.in">info@bambinoz.in</a></p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">📍</span>
+                        <div class="contact-details">
+                            <h3>Address</h3>
+                            <p>Opposite Fort Police Station, Attakulangara, Manacaud, Thiruvananthapuram, Kerala</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-icon">🕒</span>
+                        <div class="contact-details">
+                            <h3>Business Hours</h3>
+                            <p>Monday - Sunday: 9:30 AM - 9:30 PM</p>
+                        </div>
+                    </div>
+                    <div class="contact-buttons">
+                        <a href="tel:+917736022002" class="btn btn-primary">📞 Call Now</a>
+                        <a href="mailto:info@bambinoz.in" class="btn btn-secondary">✉️ Email Us</a>
+                    </div>
+                </div>
+                <div class="map-container fade-in">
+                  <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3946.2216756340586!2d76.94504847449407!3d8.477813497374303!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05bb4deb8dc1c5%3A0x668c16b98675086d!2sBAMBINOZ%20Baby%20shop!5e0!3m2!1sen!2sin!4v1761286897325!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                       
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Bambinoz - The Perfect Baby Shop. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobile-toggle');
+        const navMenu = document.getElementById('nav-menu');
+        
+        mobileToggle.addEventListener('click', () => {
+            mobileToggle.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking on nav links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileToggle.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+        
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    const offsetTop = target.offsetTop - 80; // Account for fixed header
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe all elements with fade-in class
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+        
+        // Header background on scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('.header');
+            if (window.scrollY > 100) {
+                header.style.background = 'rgba(255, 255, 255, 0.98)';
+            } else {
+                header.style.background = 'rgba(255, 255, 255, 0.95)';
+            }
+        });
+        
+        // Stagger animation for service cards
+        const serviceCards = document.querySelectorAll('.service-card');
+        serviceCards.forEach((card, index) => {
+            card.style.animationDelay = `${index * 0.1}s`;
+        });
+        
+        // Parallax effect for hero section
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const hero = document.querySelector('.hero');
+            const rate = scrolled * -0.5;
+            hero.style.transform = `translateY(${rate}px)`;
+        });
+    </script>
+</body>
+</html>
